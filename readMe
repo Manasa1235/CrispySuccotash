@@ -1,23 +1,114 @@
-Install Java 17
-Clone the Git repo to the local
-Git Repo -> 
-Right Click on the project and Downloaded Maven Sources
-Run the TestRunner File (src -> test -> testrunner -> TestRunner)
-Reports are generated in target folder (cucumber-reports.html) -> right click on reports and open in browser
+# Crispy Succotash Test Automation Framework
 
-Feature Files ->
-crispySuccotash.feature file contains the signup and login testcases
+This project is a test automation framework for the **Crispy Succotash Application**. It leverages [Cucumber](https://cucumber.io/) for behavior-driven development (BDD), [JUnit](https://junit.org/) for test execution, and [Playwright](https://playwright.dev/) for browser automation.
 
-Step Definitions ->
-Hooks : contains the code which has be  executed before each scenario
-signupandloginStepDefinition : contains the steps of the testcases
+## 📌 Overview
 
-Pages ->
-SignupandLoginPage : contains the test logic code
+The framework automates the following functionalities:
 
-Utils ->
-CommonContent : contains the error message text
-PlaywrightManager : contains the playwright code to open the browser
+- ✅ **User Account Creation:** Tests sign-up functionality using valid and invalid credentials.
+- ✅ **User Login:** Verifies both successful logins and error handling for invalid/existing credentials.
+- ✅ **Error Message Validation:** Ensures appropriate error messages are displayed for various input errors.
 
+The test scenarios are defined in Cucumber feature files, with step definitions, page objects, and utility classes implemented in Java.
 
+## 📂 Project Structure
 
+```
+├── src
+│   ├── main
+│   │   └── resources
+│   │       └── features
+│   │            └── crispySuccotash.feature    # Cucumber feature file
+                 └── feeds.feature    # Cucumber feature file
+│   └── test
+│       └── java
+│           ├── pages
+│           │    └── SignupandLoginPage.java    # Page Object for sign-up/login
+│           │    └── FeedsPage.java     # Page Object for New Feeds , Bookmarks and Comment
+│           ├── stepDefinitions
+│           │    ├── signupandloginStepDefinition.java  # Step definitions for test scenarios
+│           │    ├── FeedsStepDefinition.java  # Step definitions for test scenarios
+│           │    └── Hooks.java                           # Hooks to initialize/tear down tests
+│           ├── testrunner
+│           │    └── TestRunner.java          # JUnit runner with Cucumber options
+│           └── utils
+│                ├── PlaywrightManager.java # Playwright setup/teardown utilities
+│                └── CommonContent.java     # Common error messages and constants
+└── pom.xml                                    # Maven project configuration file
+```
+
+## ⚙️ Prerequisites
+
+- **Java:** JDK 17.
+- **Maven:** To manage dependencies and run tests.
+- **Playwright Browsers:** Required browsers should be installed. The path is set via `PLAYWRIGHT_BROWSERS_PATH` in `PlaywrightManager.java` (default: `D:\playwright-browsers`).
+- **Chrome Browser:** Tests are configured to run in **Chrome (non-headless mode)**.
+
+## 🚀 Setup and Installation
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone https://your-repository-url.git
+cd your-repository-directory
+```
+
+### 2️⃣ Install Dependencies
+
+Run the following command to install dependencies:
+
+```bash
+mvn clean install
+```
+
+### 3️⃣ Configure Playwright
+
+- Ensure `PLAYWRIGHT_BROWSERS_PATH` is correctly set in `PlaywrightManager.java`.
+- Install required browsers using:
+
+```bash
+npx playwright install
+```
+
+For more details, refer to the [Playwright installation guide](https://playwright.dev/docs/intro).
+
+## 🏃 Running the Tests
+
+You can run the tests using **Maven**:
+
+```bash
+mvn test
+```
+
+Alternatively, execute the **TestRunner** class directly from your IDE.
+
+## 📊 Test Reports
+
+After test execution, reports are generated in the `target` directory:
+
+- **HTML Report:** `target/cucumber-reports.html`
+- **JSON Report:** `target/cucumber-reports.json`
+
+These reports provide a detailed summary of the test execution results.
+
+## 🛠️ Key Features & Customizations
+
+- **📝 BDD with Cucumber:** Feature files written in plain English for easy understanding.
+- **🏗️ Page Object Model (POM):** `SignupandLoginPage` encapsulates interactions with web elements.
+- **🔄 Hooks Integration:** `Hooks` initializes Playwright before each test scenario.
+- **🔍 Custom Error Handling:** `CommonContent` manages reusable error messages.
+- **🌐 Playwright for Web Automation:** `PlaywrightManager` handles browser setup & teardown.
+
+## 📝 Notes
+
+- Tests run **non-headless** in Chrome by default. Modify `PlaywrightManager` for **headless execution**.
+- The `@After` method in `Hooks.java` is **commented out**. Uncomment it to enable cleanup after each scenario.
+
+## 🤝 Contributing
+
+Feel free to **fork** the repository and submit **pull requests**. If you encounter any issues or have feature requests, open an issue in the repository.
+
+## 📜 License
+
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
