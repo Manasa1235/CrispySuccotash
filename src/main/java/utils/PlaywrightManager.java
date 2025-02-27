@@ -23,7 +23,7 @@ public class PlaywrightManager {
 //                browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
                  browser = playwright.chromium().launch(new BrowserType.LaunchOptions()
                         .setChannel("chrome") // Use Chrome browser
-                        .setHeadless(false));
+                        .setHeadless(true));
             }
             if (browserContext == null) {
                 browserContext = browser.newContext();
