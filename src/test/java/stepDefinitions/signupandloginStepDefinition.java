@@ -13,6 +13,7 @@ import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
 public class signupandloginStepDefinition {
 
     private Page page = PlaywrightManager.getPage();
@@ -60,21 +61,59 @@ public class signupandloginStepDefinition {
 
     @Then("Verify UserName Error Message on SignUp Page {string}")
     public void verifyUserNameErrorMessageOnSignUpPage(String usernameErrorMessage) {
-        String usernameErrorMessageText = CommonContent.getErrorMessage(usernameErrorMessage);
-        assertTrue(signupandLoginPage.verifyUserNameErrorMessage(usernameErrorMessageText),"Expected Result is not displayed");
+
     }
 
     @Then("Verify Password Error Message on SignUp Page {string}")
     public void verifyPasswordErrorMessageOnSignUpPage(String passwordErrorMessage) {
-        if(!Objects.equals(passwordErrorMessage, "")) {
-        String passwordErrorMessageText = CommonContent.getErrorMessage(passwordErrorMessage);
-            assertTrue(signupandLoginPage.verifyPasswordErrorMessage(passwordErrorMessageText), "Expected Result is not displayed");
-        }
+
     }
 
     @Then("Verify Password Confirm Error Message on SignUp Page {string}")
     public void verifyPasswordConfirmErrorMessageOnSignUpPage(String passwordConfirmErrorMessage) {
         String passwordConfirmErrorMessageText = CommonContent.getErrorMessage(passwordConfirmErrorMessage);
         assertTrue(signupandLoginPage.verifyPasswordConfirmErrorMessage(passwordConfirmErrorMessageText),"Expected Result is not displayed");
+    }
+
+    @Then("Click on Login Button")
+    public void clickOnLoginButton() {
+       signupandLoginPage.clickOnLoginButton();
+    }
+
+    @And("Enter user credentials {string} {string} to login")
+    public void enterUserCredentialsToLogin(String username,String password) {
+        signupandLoginPage.enterLoginUserCredentials(username,password);
+    }
+
+    @Then("Verify UserName Error Message {string}")
+    public void verifyUserNameErrorMessage(String usernameErrorMessage) {
+        String usernameErrorMessageText = CommonContent.getErrorMessage(usernameErrorMessage);
+        assertTrue(signupandLoginPage.verifyUserNameErrorMessage(usernameErrorMessageText),"Expected Result is not displayed");
+    }
+
+    @Then("Verify Password Error Message {string}")
+    public void verifyPasswordErrorMessage(String passwordErrorMessage) {
+        if(!Objects.equals(passwordErrorMessage, "")) {
+            String passwordErrorMessageText = CommonContent.getErrorMessage(passwordErrorMessage);
+            assertTrue(signupandLoginPage.verifyPasswordErrorMessage(passwordErrorMessageText), "Expected Result is not displayed");
+        }
+    }
+
+    @Then("Verify user is logged in succesfully")
+    public void verifyUserIsLoggedInSuccesfully() {
+        assertTrue(signupandLoginPage.verifyUserIsLoggedIn(),"User not logged In");
+    }
+
+    @And("Logout")
+    public void logout() {
+        signupandLoginPage.logout();
+    }
+
+    @Then("Verify Login Password Error Message {string}")
+    public void verifyLoginPasswordErrorMessage(String passwordErrorMessage) {
+        if(!Objects.equals(passwordErrorMessage, "")) {
+            String passwordErrorMessageText = CommonContent.getErrorMessage(passwordErrorMessage);
+            assertTrue(signupandLoginPage.verifyLoginPasswordErrorMessage(passwordErrorMessageText), "Expected Result is not displayed");
+        }
     }
 }

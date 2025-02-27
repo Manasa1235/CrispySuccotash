@@ -12,6 +12,7 @@ public class CommonContent {
         errorMessages.put("ShortPasswordError","");
         errorMessages.put("ShortPasswordConfirmError","This password is too short. It must contain at least 8 characters.");
         errorMessages.put("EmptyFieldError","This field is required.");
+        errorMessages.put("LoginCommonError","Please enter a correct username and password. Note that both fields may be case-sensitive.");
     }
 
     public static String getErrorMessage(String key) {

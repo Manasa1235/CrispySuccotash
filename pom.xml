@@ -7,6 +7,7 @@
     <groupId>org.example</groupId>
     <artifactId>crispy_Succotash</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <dependencies>
         <!-- Playwright -->
@@ -48,6 +49,12 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.3.1</version> <!-- Use the latest version -->
+        </dependency>
+
     </dependencies>
 
 
@@ -72,13 +79,18 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version> <!-- Use the latest version -->
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.3.0</version> <!-- Use the latest version -->
                 <configuration>
-                    <includes>
-                        <!-- Include the TestRunner class -->
-                        <include>**/TestRunner.java</include>
-                    </includes>
+                    <finalName>\${project.artifactId}-\${project.version}</finalName>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.1.2</version> <!-- Use the latest version -->
+                <configuration>
                     <forkCount>1</forkCount>
                 </configuration>
             </plugin>

@@ -17,7 +17,7 @@ public class Hooks {
     }
 
     public static Scenario getScenario() {
-        return scenario; // Provide access to the Scenario object
+        return scenario;
     }
 
 //        @After

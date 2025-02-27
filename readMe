@@ -1,0 +1,23 @@
+Install Java 17
+Clone the Git repo to the local
+Git Repo -> 
+Right Click on the project and Downloaded Maven Sources
+Run the TestRunner File (src -> test -> testrunner -> TestRunner)
+Reports are generated in target folder (cucumber-reports.html) -> right click on reports and open in browser
+
+Feature Files ->
+crispySuccotash.feature file contains the signup and login testcases
+
+Step Definitions ->
+Hooks : contains the code which has be  executed before each scenario
+signupandloginStepDefinition : contains the steps of the testcases
+
+Pages ->
+SignupandLoginPage : contains the test logic code
+
+Utils ->
+CommonContent : contains the error message text
+PlaywrightManager : contains the playwright code to open the browser
+
+
+
